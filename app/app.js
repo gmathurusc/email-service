@@ -31,9 +31,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 require('./routes/authentication')(app);
-//Routes
-// app.use('/', require('./routes'));
-
 
 app.set('public', path.join(__dirname, 'public'));
 
