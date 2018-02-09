@@ -6,7 +6,6 @@ module.exports = {
         "token_uri":"https://accounts.google.com/o/oauth2/token",
         "auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs",
         "client_secret":"U621eIGKzlJCb4cw309Ijfzr",
-        "redirect_uris":["http://localhost:8003/*"],
         "javascript_origins":["http://localhost:8003"]
     },
     "mongoose":{
