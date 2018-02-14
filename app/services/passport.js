@@ -19,7 +19,7 @@ passport.use(new GoogleStrategy(
     {
         clientID : keys.google.client_id,
         clientSecret : keys.google.client_secret,
-        callbackURL : '/auth/google/callback',
+        callbackURL : '/api/auth/google/callback',
         proxy : true
     },
     async (accessToken, refreshToken, profile, done) => {
@@ -27,7 +27,7 @@ passport.use(new GoogleStrategy(
         if(existingUser)
             return done(null, existingUser); //error, user
 
-        const user = await new User({ googleId : profile.id}).save();
+        const user = await new User({ googleId : profile.id, name: profile.name}).save();
         done(null, user);
     })
 );

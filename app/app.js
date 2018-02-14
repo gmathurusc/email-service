@@ -5,6 +5,7 @@ const path = require("path");
 const keys = require("./config/keys");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
+const bodyParser = require('body-parser');
 
 require('./models/User');  //should come before passport
 require('./services/passport');
@@ -30,12 +31,23 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(bodyParser.json());
+
 require('./routes/authentication')(app);
+require('./routes/billing')(app);
 
 app.set('public', path.join(__dirname, 'public'));
 
 //Set Static Path
 app.use('/public', express.static(__dirname + '/public'));
+
+if(process.env.NODE_ENV === 'production') {
+    app.use(express.static('client/build'));
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+    })
+}
 
 
 app.listen(process.env.PORT || 8003, function () {
