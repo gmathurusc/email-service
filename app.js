@@ -2,13 +2,13 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 const path = require("path");
-const keys = require("./config/keys");
+const keys = require("./app/config/keys");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
 const bodyParser = require('body-parser');
 
-require('./models/User');  //should come before passport
-require('./services/passport');
+require('./app/models/User');  //should come before passport
+require('./app/services/passport');
 
 
 mongoose.connect(keys.mongoose.uri);
@@ -33,8 +33,8 @@ app.use(passport.session());
 
 app.use(bodyParser.json());
 
-require('./routes/authentication')(app);
-require('./routes/billing')(app);
+require('./app/routes/authentication')(app);
+require('./app/routes/billing')(app);
 
 app.set('public', path.join(__dirname, 'public'));
 
@@ -45,6 +45,7 @@ if(process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));
 
     app.get('*', (req, res) => {
+        console.log("dirname :" +__dirname);
         res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
     })
 }
