@@ -8,6 +8,7 @@ const passport = require("passport");
 const bodyParser = require('body-parser');
 
 require('./app/models/User');  //should come before passport
+require('./app/models/Survey');
 require('./app/services/passport');
 
 
@@ -35,7 +36,7 @@ app.use(bodyParser.json());
 
 require('./app/routes/authentication')(app);
 require('./app/routes/billing')(app);
-
+require('./app/routes/survey')(app);
 app.set('public', path.join(__dirname, 'public'));
 
 //Set Static Path

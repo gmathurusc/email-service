@@ -17,5 +17,9 @@ module.exports = {
     "stripe": {
         "publishable_key": "pk_test_mjEXI8IRMcxzKDWuE7GHjLNv",
         "secret_key": "sk_test_yy6ja7VqYAacyJc1GAJV0oV0"
+    },
+    "sendGrid":{
+        "api_key": "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",
+        "redirect": "http://localhost:3000"
     }
 };

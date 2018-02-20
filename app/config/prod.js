@@ -16,5 +16,9 @@ module.exports = {
     "stripe": {
         "publishable_key": process.env.STRIPE_PUBLISHABLE_KEY,
         "secret_key": process.env.STRIPE_SECRET_KEY
+    },
+    "sendGrid":{
+        "api_key": process.env.SENDGRID_API_KEY,
+        "redirect": "https://frozen-hamlet-54218.herokuapp.com"
     }
 };
